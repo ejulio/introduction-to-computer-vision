@@ -77,3 +77,32 @@ def median(img, k):
 			out[j, i] = np.median(window)
 	
 	return out
+
+def cross_correlation(img, kernel):
+	k = (kernel.shape[0] - 1) // 2
+	out = np.zeros(img.shape[:2], dtype = img.dtype)
+
+	img_standard_deviation = img.A1.std()
+	img_mean = img.A1.mean()
+	kernel_standard_deviation = kernel.A1.std()
+	kernel_mean = kernel.A1.mean()
+	denominator = img_standard_deviation * kernel_standard_deviation
+
+	for i in range(0, out.shape[1]):
+		for j in range(0, out.shape[0]):
+			for u in range(-k, k + 1):
+				for v in range(-k, k + 1):
+					# check for indexes greater than the image
+					if j + v >= img.shape[0] or i + u >= img.shape[1]:
+						continue
+					
+					# check for indexes less than the image
+					if j + v < 0 or i + u < 0:
+						continue
+
+					value = (kernel[v + k, u + k] - kernel_mean) * 
+						(img[j + v, i + u] - img_mean)
+					value = value / denominator
+
+					out[j, i] += value
+	return out

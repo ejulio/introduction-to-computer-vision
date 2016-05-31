@@ -249,6 +249,22 @@ def median_test_1():
 	assert out[4, 3] == 53
 	assert out[4, 4] == 82
 
+def normalized_cross_correlation_test_1():
+	img = np.matrix([
+		[8, 1, 4, 0],
+		[7, 1, 1, 1],
+		[4, 1, 1, 1],
+		[2, 1, 1, 1]], dtype = np.uint8)
+
+	kernel = np.matrix([
+		[1, 1, 1],
+		[1, 1, 1],
+		[1, 1, 1]], dtype = np.float32)
+
+	out = filter.normalized_cross_correlation(img, kernel)
+
+	assert out[2, 2] == 1
+
 print("correlation_test_1")
 cross_correlation_test_1()
 
@@ -272,3 +288,6 @@ convolution_test_4()
 
 print("median_test_1")
 median_test_1()
+
+print("normalized_cross_correlation_test_1")
+normalized_cross_correlation_test_1()
