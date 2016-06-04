@@ -35,3 +35,25 @@ def gaussian(sigma, k):
 	kernel = kernel / np.sum(kernel)
 
 	return kernel
+
+def sobel_horizontal():
+	kernel = np.array([
+		[-1, 0, 1],
+		[-2, 0, 2],
+		[-1, 0, 1]
+		], dtype = np.float32)
+
+	kernel = kernel / 8
+
+	return kernel
+
+def sobel_vertical():
+	kernel = np.array([
+		[-1, -2, -1],
+		[0,   0,  0],
+		[1,   2,  1],
+		], dtype = np.float32)
+
+	kernel = kernel / 8
+
+	return kernel

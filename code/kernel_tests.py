@@ -35,6 +35,30 @@ def test_gaussian_2():
 
 	assert np.sum(filter_kernel) == 1
 
+def sobel_horizontal_test_1():
+	filter_kernel = kernel.sobel_horizontal()
+
+	assert np.sum(filter_kernel) == 0
+
+def sobel_vertical_test_1():
+	filter_kernel = kernel.sobel_vertical()
+
+	assert np.sum(filter_kernel) == 0
+
+def sobel_horizontal_test_2():
+	filter_kernel = kernel.sobel_horizontal()
+
+	filter_kernel = np.absolute(filter_kernel)
+
+	assert np.sum(filter_kernel) == 1
+
+def sobel_vertical_test_2():
+	filter_kernel = kernel.sobel_vertical()
+
+	filter_kernel = np.absolute(filter_kernel)
+
+	assert np.sum(filter_kernel) == 1
+
 print("test_gaussian2d_1")
 test_gaussian2d_1()
 
@@ -46,3 +70,15 @@ test_gaussian_1()
 
 print("test_gaussian_2")
 test_gaussian_2()
+
+print("sobel_horizontal_test_1")
+sobel_horizontal_test_1()
+
+print("sobel_horizontal_test_2")
+sobel_horizontal_test_2()
+
+print("sobel_vertical_test_1")
+sobel_vertical_test_1()
+
+print("sobel_vertical_test_2")
+sobel_vertical_test_2()

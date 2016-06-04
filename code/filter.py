@@ -78,7 +78,7 @@ def median(img, k):
 	
 	return out
 
-def cross_correlation(img, kernel):
+def normalized_correlation(img, kernel):
 	k = (kernel.shape[0] - 1) // 2
 	out = np.zeros(img.shape[:2], dtype = img.dtype)
 
@@ -100,8 +100,7 @@ def cross_correlation(img, kernel):
 					if j + v < 0 or i + u < 0:
 						continue
 
-					value = (kernel[v + k, u + k] - kernel_mean) * 
-						(img[j + v, i + u] - img_mean)
+					value = (kernel[v + k, u + k] - kernel_mean) * (img[j + v, i + u] - img_mean)
 					value = value / denominator
 
 					out[j, i] += value
